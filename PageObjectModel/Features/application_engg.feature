@@ -518,13 +518,20 @@ Examples:
 @appeng_worksheet
     Scenario Outline: To verify worksheet functionality
         When "Application Engineer" user login to joining DB application
-        And Click on "<link>" from the sidebar
-        When user select customer name as "<customerName>" and project id is "<proID>" for other
+        #And Click on "<link>" from the sidebar
+       #When user select customer name as "<customerName>" and project id is "<proID>" for other
          
-        When select a joint name from the dropdown
+       # When select a joint name from the dropdown
+       #When created joint enter "<Fastener>" and "<die_name>" 
+       #When share created joint "<select_role>" and "<select_username>"
+         #Then generate a report "<export_type>"
+         When check it "<link2>" 
+         #Then edit generated report
+         Then delete report
+
         Examples:
-            | link      | customerName      | proID      |   program_id  |
-            | Worksheet | Dummy GJD         | Dummy test |     Dummy2    |
+            | link      | customerName      | proID      |   program_id  |  export_type |  Fastener  |  die_name |  select_role | select_username |   link2      |
+            | Worksheet | Dummy GJD         | Dummy test |     Dummy2    | Quick        |  A3024     |  ASDA     |  Technician  |  Parth pandya   | Report list  |
  
 @project_manage
     Scenario Outline: To verify project manage functionality  

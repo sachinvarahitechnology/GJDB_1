@@ -39,6 +39,26 @@ When('enter {string} or {string} or {string} or {string} or {string} or {string}
     When('click on search check result', function () {
       return app_engg.SCROLLING_directly();
     });
+
+    Then('generate a report {string}', function (export_type) {
+      return app_engg.GENERATE_REPORT(export_type);
+    });
+    Then('edit generated report', function () {
+       //in here generated report not edit 
+      return app_engg.EDIT_GENERATED_REPORT();
+    });
+    Then('delete report', function () {
+      
+      return app_engg.DELETE_GENERATED_REPORT();
+    });
+
+    When('created joint enter {string} and {string}', function (Fastener, die_name) {
+        return app_engg.CREATE_NEWJOB(Fastener,die_name);
+    });
+    When('share created joint {string} and {string}', function (select_role, select_username) {
+      return app_engg.SHARE_JOINT(select_role,select_username);
+    });
+
   When('edit any user it is edited {string} or not', function (change_name) {
          return app_engg.EDIT_USER(change_name);
   });

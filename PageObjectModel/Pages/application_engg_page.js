@@ -130,6 +130,8 @@ module.exports = {
         layer_search: element(by.xpath('(//button[@type="submit"])[1]')),
 
         jointField_ddl: element(by.xpath('//select[@formcontrolname="jointField" or id="step6"]')),
+        ok_button_after_create_newjob: element(by.xpath('/html/body/div[3]/div/div[3]/button[1]')),
+
         notification_icon: element(by.xpath('//li/a[@data-target="#notification_alert"]//img')),
         inbox_first_msg: element(by.xpath('//div[@class="modal-body"]//div//div[2]//p')),
         // joint_field_ddl: element(by.id('jointField')),
@@ -141,7 +143,33 @@ module.exports = {
         delete_row_job: element(by.xpath('//img[@src="../../../assets/images/trash.png"]')),
         save_jobs: element(by.xpath('//img[@src="../../../assets/images/save.png"]')),
         share_jobs: element(by.xpath('//img[@src="../../../assets/images/share1.png"]')),
+        add_new_jobs: element(by.xpath('//img[@title="Add new Job"]')),
+        fastener_worksheet: element(by.xpath('//input[@placeholder="Fastener"]')),
+        die_worksheet: element(by.xpath('//input[@placeholder="Die"]')),
+        select_first_joint: element(by.xpath('(//input[@class="form-control checkedJOb"])[2]')),
+        after_save_ok_button: element(by.xpath('(//div[@class="swal2-actions"]/button)[1]')),
+        share_option_1: element(by.xpath(' (//select[@class="form-control"])[3]')),
+        share_option_2: element(by.xpath('(//select[@class="form-control ng-untouched ng-pristine ng-valid"])[3]')),
+        send_button_after: element(by.xpath('(//div[@class=" d-flex justify-content-center"])[1]/button')),
+        generate_report: element(by.xpath('//img[@src="../../../assets/images/baricon.png"]')),
+        quick: element(by.xpath('(//button[@class="btn btnok mr-3"])[1]')),
+        customise: element(by.xpath('(//button[@class="btn btnok mr-3"])[2]')),
+        submit_button: element(by.xpath(' (//*[@id="collapseOne"]/div/div/div[2]/button[2])[2]')),
+        customise_report_next: element(by.xpath('//button[@class="Reporting btn btn-primary btn-sm"]')),
+        report_title: element(by.xpath('(//td[@class="ng-star-inserted"])[1]')),
+        report_d: element(by.xpath('(//td[@class="ng-star-inserted"])[4]')),
+        next_report_button: element(by.xpath(' //*[@id="collapseOne"]/div/div/div[6]/button[1]')),
+        next_report_button2: element(by.xpath('(//*[@id="collapseOne"]/div/div/div[2]/button[1])[1]')),
+        next_report_button3: element(by.xpath('(//*[@id="collapseOne"]/div/div/div[2]/button[1])[2]')),
+        next_report_button4: element(by.xpath('(//*[@id="collapseOne"]/div/button[1])[1]')),
+        next_report_button5: element(by.xpath('(//*[@id="collapseOne"]/div/button[1])[2]')),
+        next_report_button6: element(by.xpath('(//*[@id="collapseOne"]/div/div[3]/div/button[1])[1]')),
+        next_report_button7: element(by.xpath(' //*[@id="collapseOne"]/div/div[2]/div/button[1]')),
+        next_report_button8: element(by.xpath('(//*[@id="collapseOne"]/div/div[3]/div/button[1])[2]')),
+        edit_after_report_generate: element(by.xpath('(//fa-icon[@class="ng-fa-icon"])[2]')),
+        delete_after_report_generate: element(by.xpath('(//fa-icon[@class="ng-fa-icon"])[3]')),
 
+        
         //create new user
         firstname: element(by.xpath('//input[@formcontrolname="firstName"]')),
         lastname: element(by.xpath('//input[@formcontrolname="lastName"]')),
@@ -479,7 +507,94 @@ module.exports = {
         }
 
     },
+    CREATE_NEWJOB: async function (Fastener, die_name) {
+        var ele = this.app_engg_element;
+        await browser.sleep(4000);
+        await ele.add_new_jobs.click();
+        await browser.sleep(3000);
+        await ele.fastener_worksheet.sendKeys(Fastener, protractor.Key.DOWN, protractor.Key.ENTER);
+        await browser.sleep(2000);
+        await ele.die_worksheet.sendKeys(die_name, protractor.Key.DOWN, protractor.Key.ENTER);
+        await browser.sleep(2000);
+        await ele.select_first_joint.click();
+        await browser.sleep(2000);
+        await ele.save_jobs.click();
+        await browser.sleep(2000);
+        await ele.after_save_ok_button.click();
+        await browser.sleep(2000);
+    },
 
+    GENERATE_REPORT: async function (export_type) {
+        var ele = this.app_engg_element;
+        await browser.sleep(2000);
+        await ele.select_first_joint.click();
+        await browser.sleep(2000);
+        await ele.generate_report.click();
+        await browser.sleep(2000);
+        if (export_type == ('Quick')) {
+            
+            await ele.quick.click();
+            await browser.sleep(4000);
+            await browser.executeScript('window.scrollBy(0, 300);')
+            await ele.submit_button.sendKeys(protractor.Key.ENTER);
+            await browser.sleep(3000);
+
+        } else if (export_type == ('Customise')) {
+            await ele.customise.click();
+            await browser.sleep(3000);
+             
+            await ele.customise_report_next.click();
+            await ele.next_report_button.click();
+            await browser.sleep(3000);
+             
+            await browser.executeScript('window.scrollBy(0, 300);')
+            await ele.next_report_button2.click();
+            await ele.next_report_button3.click();
+            await ele.next_report_button4.click();
+             
+            await browser.executeScript('window.scrollBy(0, 500);')
+            await ele.next_report_button5.click();
+            await ele.next_report_button6.click();
+            
+            await ele.next_report_button7.click();
+            await ele.next_report_button8.click();
+            await ele.next_report_button9.click();
+             
+        } else {
+            console.log("not choose correct type")
+            
+        }
+       
+
+    },
+
+    EDIT_GENERATED_REPORT: async function(){
+        var ele = this.app_engg_element;
+        await browser.sleep(4000);
+        await ele.edit_after_report_generate.click();
+        await browser.sleep(4000);
+
+    },
+
+    DELETE_GENERATED_REPORT: async function(){
+        var ele = this.app_engg_element;
+        await browser.sleep(4000);
+        await ele.delete_after_report_generate.click();
+        await browser.sleep(4000);
+    },
+    SHARE_JOINT: async function (select_role, select_username) {
+        var ele = this.app_engg_element;
+        await browser.sleep(4000);
+        await ele.select_first_joint.click();
+        await ele.share_jobs.click();
+        await browser.sleep(2000);
+        await ele.share_option_1.sendKeys(select_role, protractor.Key.ENTER)
+        await ele.share_option_2.sendKeys(select_username, protractor.Key.ENTER)
+        await browser.sleep(2000);
+        await ele.send_button_after.click();
+        await browser.sleep(2000);
+        await ele.after_save_ok_button.click();
+    },
 
     EDIT_USER: async function (change_name) {
         var ele = this.app_engg_element;
@@ -495,8 +610,8 @@ module.exports = {
         var ele = this.app_engg_element;
         await browser.sleep(4000);
         console.log(await ele.material_edit.isEnabled());
- },
-     
+    },
+
 
     ADD_NEW_TESTING: async function () {
         var ele = this.app_engg_element;
@@ -995,7 +1110,8 @@ module.exports = {
         var ele = this.app_engg_element;
         await browser.sleep(3000);
         await ele.jointField_ddl.click().sendKeys(protractor.Key.DOWN, protractor.Key.ENTER);
-        await browser.sleep(6000);
+        await browser.sleep(10000);
+        //await ele. ok_button_after_create_newjob .click();
     },
     SELECT_NOTICIATION_ICON: async function () {
         var ele = this.app_engg_element;

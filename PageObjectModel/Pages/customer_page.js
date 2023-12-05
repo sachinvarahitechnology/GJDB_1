@@ -38,6 +38,7 @@ module.exports = {
         Home_link: element(by.xpath('//a//span[text()="Home"]')),
         create_new_user: element(by.xpath('//a//span[text()="Create New User"]')),
         list_of_user: element(by.xpath('//a//span[text()="List Of User"]')),
+        report_list: element(by.xpath('//a//span[text()="Report List "]')),
 
         create_new_templete: element(by.xpath('//a//span[text()="Create new Template"]')),
         list_of_templete: element(by.xpath('//a//span[text()="List Of User"]')),
@@ -345,6 +346,8 @@ module.exports = {
             await ele.create_new_templete.click();
         } else if (link == "List Of User") {
             await ele.list_of_user.click();
+        }else if (link2 == " Report list") {
+            await ele.report_list.click();
         }
         await browser.sleep(2000);
     },
@@ -382,6 +385,8 @@ module.exports = {
             await ele.create_new_user.click();
         } else if (link2 == "List Of User") {
             await ele.list_of_user.click();
+        }else if (link2 == "Report list") {
+            await ele.report_list.click();
         }
         await browser.sleep(2000);
     },
@@ -394,11 +399,13 @@ module.exports = {
         await browser.sleep(5000);
         await ele.create_new_joint_link.click();
 
-        await browser.sleep(70000);
+        await browser.sleep(40000);
         await ele.home_customerName.click();
         await browser.sleep(2000);
         await ele.home_customerName.sendKeys(custName, protractor.Key.DOWN, protractor.Key.ENTER);
         await browser.sleep(4000);
+        await ele.home_program_id.sendKeys("Dummy Pro", protractor.Key.DOWN, protractor.Key.ENTER)
+        await browser.sleep(2000);
         await ele.home_project_id.sendKeys(ProID, protractor.Key.ENTER);
         await browser.sleep(4000);
         // await browser.sleep(4000);
@@ -601,10 +608,10 @@ module.exports = {
 
         await ele.home_customerName.click();
         await ele.home_customerName.sendKeys(custName, protractor.Key.DOWN, protractor.Key.ENTER);
-        await browser.sleep(2000);
+        await browser.sleep(4000);
 
         await ele.home_program_id.sendKeys("Dummy Pro", protractor.Key.DOWN, protractor.Key.ENTER)
-        await browser.sleep(2000);
+        await browser.sleep(5000);
 
 
         var ss = element(by.xpath('(//select[@name="projId"])[2]'));
