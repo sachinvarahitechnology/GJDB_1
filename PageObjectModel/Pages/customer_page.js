@@ -39,6 +39,7 @@ module.exports = {
         create_new_user: element(by.xpath('//a//span[text()="Create New User"]')),
         list_of_user: element(by.xpath('//a//span[text()="List Of User"]')),
         report_list: element(by.xpath('//a//span[text()="Report List "]')),
+        search_list: element(by.xpath('//a//span[text()="Search List "]')),
 
         create_new_templete: element(by.xpath('//a//span[text()="Create new Template"]')),
         list_of_templete: element(by.xpath('//a//span[text()="List Of User"]')),
@@ -309,6 +310,7 @@ module.exports = {
         });
 
     },
+
     CLICK_ON_SIDEBAR: async function (link) {
         var ele = this.customer_element;
         await browser.sleep(8000);
@@ -346,8 +348,10 @@ module.exports = {
             await ele.create_new_templete.click();
         } else if (link == "List Of User") {
             await ele.list_of_user.click();
-        }else if (link2 == " Report list") {
+        }else if (link == " Report list") {
             await ele.report_list.click();
+        }else if (link == "search list") {
+            await ele.search_list.click();
         }
         await browser.sleep(2000);
     },
@@ -387,6 +391,8 @@ module.exports = {
             await ele.list_of_user.click();
         }else if (link2 == "Report list") {
             await ele.report_list.click();
+        }else if (link2 == "search list") {
+            await ele.search_list.click();
         }
         await browser.sleep(2000);
     },

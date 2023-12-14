@@ -52,6 +52,10 @@ When('enter {string} or {string} or {string} or {string} or {string} or {string}
       return app_engg.DELETE_GENERATED_REPORT();
     });
 
+    Then('delete one searcheble result', function () {
+           return app_engg.SEARCHABLE_RESULT();
+    });
+
     When('created joint enter {string} and {string}', function (Fastener, die_name) {
         return app_engg.CREATE_NEWJOB(Fastener,die_name);
     });

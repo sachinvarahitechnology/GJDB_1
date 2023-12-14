@@ -47,9 +47,9 @@ module.exports = {
         advance_search_project: element(by.xpath('//select[@formcontrolname="project"]')),
         advance_search_testtype: element(by.xpath('//select[@formcontrolname="testtype"]')),
         advance_search_equipment: element(by.xpath('//select[@formcontrolname="equipment"]')),
-        advance_search_fastner: element(by.xpath('(//div[@class="input-container"])[1]')),
+        advance_search_fastner: element(by.xpath('(//div[@class="input-container"])[1]/input')),
         fastener_element: element(by.xpath('//*[@id="filtermodal"]/div/div/div[2]/form/div[1]/div[1]/div[5]/div/ng-autocomplete/div[1]/div[2]/ul/li[1]/div/a')),
-        advance_search_dia: element(by.xpath('(//div[@class="input-container"])[2]')),
+        advance_search_dia: element(by.xpath('(//div[@class="input-container"])[2]/input')),
         dia_element: element(by.xpath('//*[@id="filtermodal"]/div/div/div[2]/form/div[1]/div[2]/div[5]/div/ng-autocomplete/div[1]/div[3]/ul/li/div[1]/a')),
         advance_search_jointstatus: element(by.xpath('//select[@formcontrolname="jointStatus"]')),
         advance_search_jobstatus: element(by.xpath('//select[@formcontrolname="jobStatus"]')),
@@ -169,7 +169,11 @@ module.exports = {
         edit_after_report_generate: element(by.xpath('(//fa-icon[@class="ng-fa-icon"])[2]')),
         delete_after_report_generate: element(by.xpath('(//fa-icon[@class="ng-fa-icon"])[3]')),
 
-        
+        //seach list
+        delete_searchble_firstlist: element(by.xpath('(//fa-icon[@class="ng-fa-icon"])[2]')),
+        okbutton_searchble_firstlist: element(by.xpath(' (//button[@class="btn btnok"])[2]')),
+        okbutton_conformation: element(by.xpath(' //button[@class="swal2-confirm swal2-styled"]')),
+
         //create new user
         firstname: element(by.xpath('//input[@formcontrolname="firstName"]')),
         lastname: element(by.xpath('//input[@formcontrolname="lastName"]')),
@@ -581,6 +585,21 @@ module.exports = {
         await browser.sleep(4000);
         await ele.delete_after_report_generate.click();
         await browser.sleep(4000);
+    },
+
+    SEARCHABLE_RESULT: async function(){
+        var ele = this.app_engg_element;
+        await browser.sleep(4000);
+
+        var allresult = [];
+        allresult = await element.all(by.xpath('//*[@id="step8"]/table/tbody'))
+        console.log("All  searchble result = " + allresult.length)
+         await ele.delete_searchble_firstlist.click();
+         await browser.sleep(2000);
+         await ele.okbutton_searchble_firstlist.click();
+         await browser.sleep(2000);
+         await ele.okbutton_conformation.click();
+
     },
     SHARE_JOINT: async function (select_role, select_username) {
         var ele = this.app_engg_element;
@@ -1135,24 +1154,25 @@ module.exports = {
         await browser.sleep(2000);
         await ele.advance_search_testtype.sendKeys(test_type, protractor.Key.ENTER);
         await ele.advance_search_equipment.sendKeys(equipment, protractor.Key.ENTER);
-        await browser.sleep(4000);
+         
     },
 
     ADVANCE_SEARCH_IN_HOME1: async function (Fastner, die, jointstatus, jobstatus, materialcategory, industryy, programID, lab) {
-
+        await browser.sleep(2000);
         var ele = this.app_engg_element;
-        await ele.advance_search_fastner.sendKeys(Fastner)
-        await ele.fastener_element.click();
-        await ele.advance_search_dia.sendKeys(die);
-        await ele.dia_element.click();
-        await ele.advance_search_jointstatus.sendKeys(jointstatus, protractor.ENTER);
-        await ele.advance_search_jobstatus.sendKeys(jobstatus, protractor.ENTER);
+     
+        await ele.advance_search_fastner.sendKeys(Fastner,protractor.Key.DOWN,protractor.Key.ENTER);
+         await ele.advance_search_dia.sendKeys(die); 
         await browser.sleep(2000);
-        await ele.advance_search_materialCategory.sendKeys(materialcategory, protractor.ENTER);
-        await ele.advance_search_industry.sendKeys(industryy, protractor.ENTER);
+        await ele.advance_search_jointstatus.sendKeys(jointstatus, protractor.key.ENTER);
         await browser.sleep(2000);
-        await ele.advance_search_programid.sendKeys(programID, protractor.ENTER);
-        await ele.advance_search_lab.sendKeys(lab, protractor.ENTER);
+        await ele.advance_search_jobstatus.sendKeys(jobstatus, protractor.key.ENTER);
+        await browser.sleep(2000);
+        await ele.advance_search_materialCategory.sendKeys(materialcategory, protractor.key.ENTER);
+        await ele.advance_search_industry.sendKeys(industryy, protractor.key.ENTER);
+        await browser.sleep(2000);
+        await ele.advance_search_programid.sendKeys(programID, protractor.key.ENTER);
+        await ele.advance_search_lab.sendKeys(lab, protractor.key.ENTER);
         await browser.sleep(2000);
         await ele.advance_search_filter.click();
         await browser.sleep(2000);

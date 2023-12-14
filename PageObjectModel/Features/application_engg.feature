@@ -446,6 +446,7 @@ Examples:
 
 @application_home_advance_search
         Scenario Outline: To verify advnace search functionality in home
+        
         When "Application Engineer" user login to joining DB application
         When Click on "<link>" from the sidebar
         When click on search after puting values this "<Customer>" "<project>" "<test_type>" "<equipment>"
@@ -527,6 +528,7 @@ Examples:
          #Then generate a report "<export_type>"
          When check it "<link2>" 
          #Then edit generated report
+         #edit id notworking and also pdf icon get edit page
          Then delete report
 
         Examples:
@@ -557,3 +559,13 @@ Examples:
  Examples:
             | link           |
             | project manage |        
+
+ @search_list
+    Scenario Outline: To verify searchlist page after search in homepage functionality  
+        When "Application Engineer" user login to joining DB application
+        And Click on "<link>" from the sidebar
+        Then delete one searcheble result 
+
+Examples:
+            | link           |
+            | search list    |
