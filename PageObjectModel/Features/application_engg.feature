@@ -39,7 +39,7 @@ Feature: TO verify application engineer role all functionality
           |Dummy GJD   |  Dummy test    |         
 
 
-    @appeng_checkNotification
+@appeng_checkNotification
     Scenario Outline: To verify notification functionality
 
         When "Application Engineer" user login to joining DB application
@@ -60,8 +60,9 @@ Feature: TO verify application engineer role all functionality
         And Select number of layer "<no_layer>" from the material search
         Then Select material category "<material_category>" and material grade "<material_grade>" and select oprator "<operator>" and select unit "<unit>" mm
         And Click on search button
-        #Then check resulted data with scrolling
-        #Then Verify if record availble then displayed on table oterwise display no results found
+        Then Verify if record availble then displayed on table oterwise display no results found
+         
+        
         Examples:
             | no_layer | material_category | material_grade | operator | unit | 
             | 1        | Any               | Any            | =        | 1    |  
@@ -76,29 +77,30 @@ Feature: TO verify application engineer role all functionality
         Then Select material category "<material_category>" and material grade "<material_grade>" and select oprator "<operator>" and select unit "<unit>" mm
         And Select material category "<inter_material_category>" and material grade "<inter_material_grade>" and select oprator "<inter_operator>" and select unit "<inter_unit>" mm and again material category "<layer2_material_category>" and material grade "<layer2_material_grade>" and select oprator "<layer2_operator>" and select unit "<layer2_unit>" mm from layer 2
         And Click on search button
-        #Then check resulted data with scrolling
         Then Verify if record availble then displayed on table oterwise display no results found
+          
+        
         Examples:
             | customerName | proID | no_layer | material_category | material_grade | operator | unit |  inter_material_category | inter_material_grade | inter_operator | inter_unit | layer2_material_category | layer2_material_grade | layer2_operator | layer2_unit |
-            | Ford         | FD111 | 2        | Any               | Any            | =        | 1    | Any                     | Any                  | =              | 2          | PHS                      | Any                   | =               | 3           |
+            | Ford         | FD111 | 2        | Any               | Any            | =        | 1    | PHS                      | MY                   | =              | 2          | PHS                      | MY                  | =               | 3           |
  
 
     @appengg_material_search_3
     Scenario Outline: To verify search functionality for layer 3 material search
-
         When "Application Engineer" user login to joining DB application
         # When user select customer name as "<customerName>" and project id is "<proID>"
         And Select number of layer "<no_layer>" from the material search
         Then Select material category "<material_category>" and material grade "<material_grade>" and select oprator "<operator>" and select unit "<unit>" mm
-        And Select material category "<inter_material_category>" and material grade "<inter_material_grade>" and select oprator "<inter_operator>" and select unit "<inter_unit>" mm and again material category "<layer2_material_category>" and material grade "<layer2_material_grade>" and select oprator "<layer2_operator>" and select unit "<layer2_unit>" mm from layer 2
+        And Select material category "<inter_material_category>" and material grade "<inter_material_grade>" and select oprator "<inter_operator>" and select unit "<inter_unit>" mm and again material category "<layer2_material_category>" and material grade "<layer2_material_grade>" and select oprator "<layer2_operator>" and select unit "<layer2_unit>" mm from layer 2D                                                                     
         And Select material category "<layer3_material_category>" and material grade "<layer3_material_grade>" and select oprator "<layer3_operator>" and select unit "<layer3_unit>" mm from layer 3
-        And Interlaye select material category "<inter_mc2>", material grade "<inter_mg2>", unit "<inter_unit2>", again select material cateogry "<3mc>", material grade "<3mg>" and unit "<3unit>" mm for 3 layer
+        #And Interlaye select material category "<inter_mc2>", material grade "<inter_mg2>", unit "<inter_unit2>", again select material cateogry "<3mc>", material grade "<3mg>" and unit "<3unit>" mm for 3 layer
         And Click on search button
-        #Then check resulted data with scrolling
         Then Verify if record availble then displayed on table oterwise display no results found
+        Then check resulted data with scrolling
+        
         Examples:
             | customerName | proID | no_layer | material_category | material_grade | operator | unit | inter_material_category | inter_material_grade | inter_operator | inter_unit | layer2_material_category | layer2_material_grade | layer2_operator | layer2_unit | inter_mc2 | inter_mg2 | inter_unit2 | 3mc  | 3mg | 3unit |
-            | Ford         | FD111 | 3        | Tape              | Any            | =        | 1    | Tape                    | Any                  | =              | 2          | Tape                     | Any                   | =               | 3           | Tape      | Any       | 4           | Tape | Any | 5     |
+            | Ford         | FD111 | 3        | PHS               | Any            | =        | 1    | PHS                     | Any                  | =              | 2          | PHS                      | Any                   | =               |      2      | PHS       | Any       | 3           | Tape | Any | 5     |
 
     @appengg_material_search_4
     Scenario Outline: To verify search functionality for layer 4 material search
@@ -106,57 +108,54 @@ Feature: TO verify application engineer role all functionality
         # When user select customer name as "<customerName>" and project id is "<proID>"
         And Select number of layer "<no_layer>" from the material search
         Then Select material category "<material_category>" and material grade "<material_grade>" and select oprator "<operator>" and select unit "<unit>" mm
-        And Select material category "<inter_material_category>" and material grade "<inter_material_grade>" and select oprator "<inter_operator>" and select unit "<inter_unit>" mm and again material category "<layer2_material_category>" and material grade "<layer2_material_grade>" and select oprator "<layer2_operator>" and select unit "<layer2_unit>" mm from layer 2
+        And Select material category "<inter_material_category>" and material grade "<inter_material_grade>" and select oprator "<inter_operator>" and select unit "<inter_unit>" mm and again material category "<layer2_material_category>" and material grade "<layer2_material_grade>" and select oprator "<layer2_operator>" and select unit "<layer2_unit>" mm from layer 2D
         And Select material category "<layer3_material_category>" and material grade "<layer3_material_grade>" and select oprator "<layer3_operator>" and select unit "<layer3_unit>" mm from layer 3
-        And Interlaye select material category "<inter_mc2>", material grade "<inter_mg2>", unit "<inter_unit2>", again select material cateogry "<3mc>", material grade "<3mg>" and unit "<3unit>" mm for 3 layer
-
+        #And Interlaye select material category "<inter_mc2>", material grade "<inter_mg2>", unit "<inter_unit2>", again select material cateogry "<3mc>", material grade "<3mg>" and unit "<3unit>" mm for 3 layer
         And Interlaye select material category "<inter_mc4>", material grade "<inter_mg4>", unit "<inter_unit4>", again select material cateogry "<4mc>", material grade "<4mg>" and unit "<4unit>" mm for 4 layer wise        
         And Click on search button
-        #Then check resulted data with scrolling
         Then Verify if record availble then displayed on table oterwise display no results found
+        Then check resulted data with scrolling
+        
         Examples:
             | customerName | proID | no_layer | material_category | material_grade | operator | unit | inter_material_category | inter_material_grade | inter_operator | inter_unit | layer2_material_category | layer2_material_grade | layer2_operator | layer2_unit | inter_mc2 | inter_mg2 | inter_unit2 | 3mc | 3mg | 3unit | inter_mc4 | inter_mg4 | inter_unit4 | 4mc | 4mg | 4unit |
-            | Ford         | FD111 | 4        | Any               | Any            | =        | 1    | Any                     | Any                  | =              | 2          | Any                      | Any                   | =               | 3           | Any       | Any       | 4           | Any | Any | 5     | Any       | Any       | 6           | Any | Any | 7     |
+            | Ford         | FD111 | 4        | PHS               | Any            | =        | 1    | PHS                     | Any                  | =              | 2          | Any                      | Any                   | =               | 3           | Any       | Any       | 4           | Any | Any | 5     | Any       | Any       | 6           | Any | Any | 7     |
 
 
 @appengg_newJointAdd_1
     Scenario Outline: To verify create new joint request functionality for one layer.
         When "Application Engineer" user login to joining DB application      
         And Click on "<link>" from the sidebar
-
-       # When user select customer name as "<customerName>" and project id is "<proID>"
-
-        When Fill automatically joint name "<customerName>" and project id is "<proID>" 
+       # When user select customer name as "<customerName>" or "<program_ID>" and project id is "<proID>"
+        When Fill automatically joint name "<customerName>" or "<program_ID>" and project id is "<proID>" 
         And Select the number of layer "<no_layer>"
         And Enter material category "<mc>", material grade "<mg>" and unit "<unit>" mm
         When click on create new joint request button
      
         Examples:
-            | link             |    no_layer | mc   | mg    | unit | customerName | proID       |
-            | Create New Joint |    1        | PHS  | MY    | 1    | Dummy GJD    |  Dummy test |
+            | link             |    no_layer | mc   | mg    | unit | customerName |  program_ID  |    proID    |
+            | Create New Joint |    1        | PHS  | MY    | 1    | Dummy GJD    |   Dummy Pro  | Dummy test  |
 
 @appengg_newJointAdd_2
     Scenario Outline: To verify create new joint request functionality for Two layer.
          When "Application Engineer" user login to joining DB application
        # When user select customer name as "<customerName>" and project id is "<proID>"
-
         And Click on "<link>" from the sidebar
-        When Fill automatically joint name "<customerName>" and project id is "<proID>"
+         When Fill automatically joint name "<customerName>" or "<program_ID>" and project id is "<proID>"
         And Select the number of layer "<no_layer>"
         And Enter material category "<mc>", material grade "<mg>" and unit "<unit>" mm
         And Interlaye select material category "<inter_mc1>", material grade "<inter_mg1>", unit "<inter_unit>", again select material cateogry "<2mc>", material grade "<2mg>" and unit "<2unit>" mm
         When click on create new joint request button
          
         Examples:                                          
-            | link             |     no_layer | mc   | mg    | unit | customerName | proID      | inter_mc1 | inter_mg1  | inter_unit | 2mc  | 2mg   | 2unit |
-            | Create New Joint |     2        | PHS  | MY    | 1    | Dummy GJD    | Dummy test | adhesive  | MATG45     | 2          | PHS  | MY    | 3     |
+            | link             |     no_layer | mc   | mg    | unit | customerName | program_ID    | proID      | inter_mc1 | inter_mg1  | inter_unit | 2mc  | 2mg   | 2unit |
+            | Create New Joint |     2        | PHS  | MY    | 1    | Dummy GJD    |   Dummy Pro   | Dummy test | adhesive  | MATG45     | 2          | PHS  | MY    | 3     |
 
 @appengg_newJointAdd_3
     Scenario Outline: To verify create new joint request functionality for three layer.
         When "Application Engineer" user login to joining DB application
         # When user select customer name as "<customerName>" and project id is "<proID>"
         And Click on "<link>" from the sidebar
-        When Fill automatically joint name "<customerName>" and project id is "<proID>"
+        When Fill automatically joint name "<customerName>" or "<program_ID>" and project id is "<proID>"
         And Select the number of layer "<no_layer>"
         And Enter material category "<mc>", material grade "<mg>" and unit "<unit>" mm
         And Interlaye select material category "<inter_mc1>", material grade "<inter_mg1>", unit "<inter_unit>", again select material cateogry "<2mc>", material grade "<2mg>" and unit "<2unit>" mm
@@ -165,8 +164,8 @@ Feature: TO verify application engineer role all functionality
         When click on create new joint request button
          
         Examples:
-            | link             |     no_layer | mc   | mg    | unit | customerName | proID      | inter_mc1 | inter_mg1  | inter_unit | 2mc  | 2mg   | 2unit | inter_mc2 | inter_mg2  | inter_unit2 | 3mc  | 3mg   | 3unit |
-            | Create New Joint |     3        | PHS  | MY    | 1    | Dummy GJD    | Dummy test | adhesive  | MATG45     | 2          | PHS  | MY    | 3     | adhesive  | MATG45     | 4           | PHS  | MY    | 5     |
+            | link             |     no_layer | mc   | mg    | unit | customerName | program_ID   | proID      | inter_mc1 | inter_mg1  | inter_unit | 2mc  | 2mg   | 2unit | inter_mc2 | inter_mg2  | inter_unit2 | 3mc  | 3mg   | 3unit |
+            | Create New Joint |     3        | PHS  | MY    | 1    | Dummy GJD    |  Dummy Pro   | Dummy test | adhesive  | MATG45     | 2          | PHS  | MY    | 3     | adhesive  | MATG45     | 4           | PHS  | MY    | 5     |
 
 
 @appengg_newJointAdd_4
@@ -175,7 +174,7 @@ Feature: TO verify application engineer role all functionality
         When "Application Engineer" user login to joining DB application
         # When user select customer name as "<customerName>" and project id is "<proID>"
         And Click on "<link>" from the sidebar
-        When Fill automatically joint name "<customerName>" and project id is "<proID>"
+        When Fill automatically joint name "<customerName>" or "<program_ID>" and project id is "<proID>"
         And Select the number of layer "<no_layer>"
         And Enter material category "<mc>", material grade "<mg>" and unit "<unit>" mm
         And Interlaye select material category "<inter_mc1>", material grade "<inter_mg1>", unit "<inter_unit>", again select material cateogry "<2mc>", material grade "<2mg>" and unit "<2unit>" mm
@@ -184,8 +183,8 @@ Feature: TO verify application engineer role all functionality
         When click on create new joint request button
         
         Examples:
-            | link             |     no_layer | mc   | mg    | unit | customerName | proID      | inter_mc1 | inter_mg1  | inter_unit | 2mc  | 2mg   | 2unit | inter_mc2 | inter_mg2  | inter_unit2 | 3mc  | 3mg   | 3unit | inter_mc4 | inter_mg4  | inter_unit4 | 4mc  | 4mg   | 4unit |
-            | Create New Joint |     4        | PHS  | MY    | 1    | Dummy GJD    | Dummy test | adhesive  | MATG45     | 2          |  PHS | MY    | 3     | adhesive  | MATG45     | 4           | PHS  | MY    | 5     | adhesive  | MATG45     | 6           | PHS  | MY    | 7     |
+            | link             |     no_layer | mc   | mg    | unit | customerName |  program_ID  | proID      | inter_mc1 | inter_mg1  | inter_unit | 2mc  | 2mg   | 2unit | inter_mc2 | inter_mg2  | inter_unit2 | 3mc  | 3mg   | 3unit | inter_mc4 | inter_mg4  | inter_unit4 | 4mc  | 4mg   | 4unit |
+            | Create New Joint |     4        | PHS  | MY    | 1    | Dummy GJD    |   Dummy Pro  |Dummy test | adhesive  | MATG45     | 2          |  PHS | MY    | 3     | adhesive  | MATG45     | 4           | PHS  | MY    | 5     | adhesive  | MATG45     | 6           | PHS  | MY    | 7     |
 
 
 @appeng_to_approval_team
@@ -449,13 +448,14 @@ Examples:
         
         When "Application Engineer" user login to joining DB application
         When Click on "<link>" from the sidebar
+        When search with Favorite search filter
         When click on search after puting values this "<Customer>" "<project>" "<test_type>" "<equipment>"
         When click it "<Fastner>" "<die>" "<jointstatus>" "<jobstatus>" "<materialcategory>" and "<industryy>" and "<programID>" and "<lab>"
-
+        
 
         Examples:
         | link  |Customer  |project    |test_type  |equipment   | Fastner  | die | jointstatus  |  jobstatus  |  materialcategory  |  industryy  |  programID | lab  |
-        | Home  | dummy    |test_dummy | mechnical |UUM-System 1|  A30     | DC  | Approved     |  Acceptable |  Steel             |  Automation | Dummy_     | pune |
+        | Home  | dummy    |dummy test | mechnical |UUM-System 1|  A30     | DC  | Approved     |  Acceptable |  Steel             |  Automation | Dummy_     | pune |
 
 @application_home_advance_search_previous_search
         Scenario Outline: To verify advance search functionality show previous search
@@ -501,7 +501,6 @@ Examples:
         When enter "<name_of_template>" and "<select_group>" and "<property_name>" and "<t_type>" and "<t_unit>" and "<t_template>"  
        #(comment)new template is created but the sorting not proper in list of template
 
-
        Examples:
        |        link             |   name_of_template  |  select_group |   property_name |  t_type |  t_unit | t_template  |
        |  create new templete    |   sachin            |  Customer     |   testing       |  Number |  test   | Testing     |
@@ -519,21 +518,20 @@ Examples:
 @appeng_worksheet
     Scenario Outline: To verify worksheet functionality
         When "Application Engineer" user login to joining DB application
-        #And Click on "<link>" from the sidebar
-       #When user select customer name as "<customerName>" and project id is "<proID>" for other
-         
-       # When select a joint name from the dropdown
-       #When created joint enter "<Fastener>" and "<die_name>" 
-       #When share created joint "<select_role>" and "<select_username>"
+        And Click on "<link>" from the sidebar
+        When user select customer name as "<customerName>" and project id is "<proID>" for other
+        When select a joint name from the dropdown
+        When created joint enter "<Fastener>" and "<die_name>" 
+        #When share created joint "<select_role>" and "<select_username>"
          #Then generate a report "<export_type>"
-         When check it "<link2>" 
+         #When check it "<link2>" 
          #Then edit generated report
          #edit id notworking and also pdf icon get edit page
-         Then delete report
+         #Then delete report
 
         Examples:
-            | link      | customerName      | proID      |   program_id  |  export_type |  Fastener  |  die_name |  select_role | select_username |   link2      |
-            | Worksheet | Dummy GJD         | Dummy test |     Dummy2    | Quick        |  A3024     |  ASDA     |  Technician  |  Parth pandya   | Report list  |
+            | link      | customerName  | program_ID    | proID      |   program_id  |  export_type |  Fastener  |  die_name |  select_role | select_username |   link2      |
+            | Worksheet | Dummy GJD     |   Dummy prog  | Dummy test |     Dummy2    | Quick        |  A3024     |  ASDA     |  Technician  |  Parth pandya   | Report list  |
  
 @project_manage
     Scenario Outline: To verify project manage functionality  

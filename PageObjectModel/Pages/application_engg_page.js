@@ -43,10 +43,14 @@ module.exports = {
         statuses_Master: element(by.xpath('(//div[@class="heading"])[6]')),
 
         //advance_search
+        advance_search_fevorite: element(by.xpath('(//label[@class="form-check-label"])[1]')),
         advance_search_customer: element(by.xpath('//select[@formcontrolname="customer"]')),
         advance_search_project: element(by.xpath('//select[@formcontrolname="project"]')),
         advance_search_testtype: element(by.xpath('//select[@formcontrolname="testtype"]')),
         advance_search_equipment: element(by.xpath('//select[@formcontrolname="equipment"]')),
+
+        advance_search_filter: element(by.xpath('//button[@class="btn  filterbutton"]')),
+
         advance_search_fastner: element(by.xpath('(//div[@class="input-container"])[1]/input')),
         fastener_element: element(by.xpath('//*[@id="filtermodal"]/div/div/div[2]/form/div[1]/div[1]/div[5]/div/ng-autocomplete/div[1]/div[2]/ul/li[1]/div/a')),
         advance_search_dia: element(by.xpath('(//div[@class="input-container"])[2]/input')),
@@ -141,13 +145,13 @@ module.exports = {
         // Worksheet page
         add_row: element(by.xpath('//img[@src="../../../assets/images/add.png"]')),
         delete_row_job: element(by.xpath('//img[@src="../../../assets/images/trash.png"]')),
-        save_jobs: element(by.xpath('//img[@src="../../../assets/images/save.png"]')),
+        save_jobs: element(by.xpath('//img[@title="Save Job"]')),
         share_jobs: element(by.xpath('//img[@src="../../../assets/images/share1.png"]')),
         add_new_jobs: element(by.xpath('//img[@title="Add new Job"]')),
         fastener_worksheet: element(by.xpath('//input[@placeholder="Fastener"]')),
         die_worksheet: element(by.xpath('//input[@placeholder="Die"]')),
         select_first_joint: element(by.xpath('(//input[@class="form-control checkedJOb"])[2]')),
-        after_save_ok_button: element(by.xpath('(//div[@class="swal2-actions"]/button)[1]')),
+        after_save_ok_button: element(by.xpath('//button[@class="swal2-confirm swal2-styled"]')),
         share_option_1: element(by.xpath(' (//select[@class="form-control"])[3]')),
         share_option_2: element(by.xpath('(//select[@class="form-control ng-untouched ng-pristine ng-valid"])[3]')),
         send_button_after: element(by.xpath('(//div[@class=" d-flex justify-content-center"])[1]/button')),
@@ -391,6 +395,7 @@ module.exports = {
         await ele.search_in_addrole.sendKeys(add_role);
         await browser.sleep(3000);
         await ele.ss.click();
+        await browser.sleep(2000);
         await element(by.xpath('//label[@class="labelName Profilepic"]')).click();
         // Find the checkbox with aria-label="Application Engineer" and click it
         //     var checkboxes = document.querySelectorAll('input[type="checkbox"][aria-label="Application Engineer"]');
@@ -401,13 +406,13 @@ module.exports = {
         //     console.log("Checkbox with aria-label='Application Engineer' not found.");
         //     }
 
-        var file = "C:/Users/Pappya/Pictures/sign122.jpg";
+        var file = "C:/Users/sachi/OneDrive/Pictures/Screenshots/GJDB.PNG";
         await ele.choose_file.sendKeys(file);
         await ele.lab.sendKeys(lab);
         await ele.restriction_select.sendKeys(restriction);
         await ele.submit.click();
         await browser.sleep(3000);
-        await ele.ok_button.click();
+        //await ele.ok_button.click();
     },
 
     LIST_OF_USER: async function (pageno) {
@@ -522,10 +527,12 @@ module.exports = {
         await browser.sleep(2000);
         await ele.select_first_joint.click();
         await browser.sleep(2000);
+        await browser.manage().timeouts().implicitlyWait(10000);
         await ele.save_jobs.click();
-        await browser.sleep(2000);
-        await ele.after_save_ok_button.click();
-        await browser.sleep(2000);
+        await browser.sleep(3000);
+         console.log("save button is remaining -----------------------------")
+         await ele.after_save_ok_button.click();
+          
     },
 
     GENERATE_REPORT: async function (export_type) {
@@ -1148,13 +1155,25 @@ module.exports = {
         await browser.sleep(4000);
         await ele.Other_filter_homepage.click();
         await browser.sleep(2000);
+        await ele.advance_search_fevorite.click();
+        await browser.sleep(2000);
         await ele.advance_search_customer.sendKeys(Customer, protractor.Key.ENTER);
         await browser.sleep(4000);
         await ele.advance_search_project.sendKeys(project, protractor.Key.ENTER);
         await browser.sleep(2000);
         await ele.advance_search_testtype.sendKeys(test_type, protractor.Key.ENTER);
         await ele.advance_search_equipment.sendKeys(equipment, protractor.Key.ENTER);
-         
+        await browser.sleep(2000);
+         await ele.advance_search_filter.click();
+         await browser.sleep(2000);
+         await ele.search_button.click();
+         await browser.sleep(4000);
+    },
+
+    FAVORITE_FILTER: async function(){
+        await browser.sleep(2000);
+        var ele = this.app_engg_element;
+
     },
 
     ADVANCE_SEARCH_IN_HOME1: async function (Fastner, die, jointstatus, jobstatus, materialcategory, industryy, programID, lab) {
@@ -1162,12 +1181,14 @@ module.exports = {
         var ele = this.app_engg_element;
      
         await ele.advance_search_fastner.sendKeys(Fastner,protractor.Key.DOWN,protractor.Key.ENTER);
-         await ele.advance_search_dia.sendKeys(die); 
+        await ele.advance_search_dia.sendKeys(die); 
         await browser.sleep(2000);
         await ele.advance_search_jointstatus.sendKeys(jointstatus, protractor.key.ENTER);
         await browser.sleep(2000);
+        console.log("1=========================================")
         await ele.advance_search_jobstatus.sendKeys(jobstatus, protractor.key.ENTER);
         await browser.sleep(2000);
+        console.log("2=========================================")
         await ele.advance_search_materialCategory.sendKeys(materialcategory, protractor.key.ENTER);
         await ele.advance_search_industry.sendKeys(industryy, protractor.key.ENTER);
         await browser.sleep(2000);

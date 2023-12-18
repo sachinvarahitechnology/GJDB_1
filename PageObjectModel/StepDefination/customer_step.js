@@ -20,6 +20,11 @@ Then(/^Select material category "([^"]*)" and material grade "([^"]*)" and selec
 Then(/^Select material category "([^"]*)" and material grade "([^"]*)" and select oprator "([^"]*)" and select unit "([^"]*)" mm and again material category "([^"]*)" and material grade "([^"]*)" and select oprator "([^"]*)" and select unit "([^"]*)" mm from layer 2$/, function(mc, mg, operator, unit, mc1, mg1, operator1, unit1) {
     return customer.SELECT_CATEGORY_FOR_SEARCH_LAYER2(mc, mg, operator, unit, mc1, mg1, operator1, unit1);
 });
+
+Then('Select material category {string} and material grade {string} and select oprator {string} and select unit {string} mm and again material category {string} and material grade {string} and select oprator {string} and select unit {string} mm from layer 2D', function ( mc, mg, operator, unit, mc1, mg1, operator1, unit1) {
+    return customer.SELECT_CATEGORY_FOR_SEARCH_LAYER2_D(mc, mg, operator, unit, mc1, mg1, operator1, unit1);
+  });
+
 Then(/^Select material category "([^"]*)" and material grade "([^"]*)" and select oprator "([^"]*)" and select unit "([^"]*)" mm from layer 3$/, function(mc, mg, operator, unit) {
     return customer.SELECT_CATEGORY_FOR_SEARCH_LAYER3(mc, mg, operator, unit);
 });
@@ -40,9 +45,15 @@ When('check it {string}', function (link2) {
     return customer.link2(link2);
  });
 
-When('Fill automatically joint name {string} and project id is {string}', function(custName, ProID) {
-    return customer.CUST_ENTER_JOINT_NAME(custName, ProID);
-});
+// When('Fill automatically joint name {string} and project id is {string}', function(custName, ProID) {
+//     return customer.CUST_ENTER_JOINT_NAME(custName, ProID);
+// });
+
+When('Fill automatically joint name {string} or {string} and project id is {string}', function (custName, ProID,program_ID) {
+    
+    return   customer.CUST_ENTER_JOINT_NAME(custName, ProID,program_ID);
+  });
+
 When(/^Select the number of layer "([^"]*)"$/, function(no_layer) {
     return customer.CUST_SELECT_NO_OF_LAYER(no_layer);
 });

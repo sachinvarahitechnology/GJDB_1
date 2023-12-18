@@ -84,9 +84,12 @@ When('Click on the option in material {string}', function (option_in_material) {
   });
  
   When('click it {string} {string} {string} {string} {string} and {string} and {string} and {string}', function (Fastner, die, jointstatus, jobstatus, materialcategory, industryy, programID, lab) {
-                             return app_engg.ADVANCE_SEARCH_IN_HOME1(Fastner, die, jointstatus, jobstatus, materialcategory, industryy, programID, lab);                                                                 
+     return app_engg.ADVANCE_SEARCH_IN_HOME1(Fastner, die, jointstatus, jobstatus, materialcategory, industryy, programID, lab);                                                                 
                });
 
+               When('search with Favorite search filter', function () {
+                 return app_engg.FAVORITE_FILTER();
+              });
     Then('validate show previous search result', function () {
         return app_engg.PREVIOUS_SEARCH();
     });

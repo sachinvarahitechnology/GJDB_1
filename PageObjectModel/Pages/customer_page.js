@@ -60,10 +60,12 @@ module.exports = {
         unit_value1: element(by.xpath('//input[@formcontrolname="propValue1"]')),
         c_unit_value1: element(by.xpath('//input[@formcontrolname="propValue1" and @placeholder="-"]')),
         home_search_btn: element(by.xpath('//button[text()="Search"]')),
+        assign_to_me_checkbox:element(by.xpath('//input[@class="form-check-input defaultJoints"]')),
+
         home_inter_material_category: element(by.xpath('//select[@formcontrolname="propertiesNameLayer1"]')),
         home_inter_material_grade: element(by.xpath('//select[@formcontrolname="materialGradeLayer1"]')),
         home_inter_operator: element(by.xpath('//select[@formcontrolname="operator2" and @name="valSelect"]')),
-        home_inter_prop_value: element(by.xpath('//input[@formcontrolname="propertiesNameLayerValue1"]')),
+        home_inter_prop_value: element(by.xpath('//input[@formcontrolname="propValue1"]')),
         home_inter_material_category2: element(by.xpath('//select[@formcontrolname="propertiesNameLayer2"]')),
         home_inter_material_grade2: element(by.xpath('//select[@formcontrolname="materialGradeLayer2"]')),
         home_inter_operator2: element(by.xpath('(//select[@class="mt-4 w-100 form-control font16 ng-untouched ng-pristine ng-valid"])[1]')),
@@ -94,8 +96,8 @@ module.exports = {
         home_layer2_prop_value: element(by.xpath('//input[@formcontrolname="propValue2"]')),
         home_layer3_material_category: element(by.xpath('//select[@formcontrolname="propertiesName3"]')),
         home_layer3_material_grade: element(by.xpath('//select[@formcontrolname="materialGrade3"]')),
-        home_layer3_operator: element(by.xpath('//div[@class="row show3"]//following::div[@class="row show3"]//div[5]//select[@formcontrolname="operator1"]')),
-        home_layer3_prp_value: element(by.xpath('//input[@formcontrolname="propValue3"]')),
+        home_layer3_operator: element(by.xpath('//input[@formcontrolname="propValue3"]')),
+         home_layer3_prp_value: element(by.xpath('(//input[@placeholder="-"])[5]')),
 
         home_layer4_material_category: element(by.xpath('//select[@formcontrolname="propertiesName4"]')),
         home_layer4_material_grade: element(by.xpath('//select[@formcontrolname="materialGrade4"]')),
@@ -185,36 +187,30 @@ module.exports = {
         await browser.manage().timeouts().implicitlyWait(20000);
         await ele.unit_value1.sendKeys(unit);
         await browser.manage().timeouts().implicitlyWait(20000);
-        // console.log(mg + operator + unit);
+         
         await browser.sleep(2000);
     },
     SELECT_CATEGORY_FOR_SEARCH_LAYER2: async function (mc, mg, operator, unit, mc1, mg1, operator1, unit1) {
         var ele = this.customer_element;
         await browser.sleep(5000);
 
-
-        await ele.home_interlayer.click();
-        await browser.sleep(3000);
-
-        await ele.home_inter_material_category.sendKeys(mc);
-        await browser.manage().timeouts().implicitlyWait(20000);
-        console.log(mc + " :material category");
+        // await ele.home_inter_material_category.sendKeys(mc);
+        // await browser.manage().timeouts().implicitlyWait(20000);
+        // console.log(mc + " :material category");
+        // await browser.sleep(2000);
+        // await ele.home_inter_material_grade.sendKeys(mg);
+        // await browser.manage().timeouts().implicitlyWait(20000);
+        // await browser.sleep(2000);
+        // console.log(mg + " :material grade");
+        // await browser.manage().timeouts().implicitlyWait(20000);
+        // await ele.home_inter_operator.sendKeys(operator);
+        // console.log(operator + " : operator");
+        // await browser.manage().timeouts().implicitlyWait(20000);
+        // await ele.home_inter_prop_value.sendKeys(unit);
+        // await browser.manage().timeouts().implicitlyWait(20000);
+         
         await browser.sleep(2000);
-        await ele.home_inter_material_grade.sendKeys(mg);
-        await browser.manage().timeouts().implicitlyWait(20000);
-        await browser.sleep(2000);
-        console.log(mg + " :material grade");
-        await browser.manage().timeouts().implicitlyWait(20000);
-        await ele.home_inter_operator.sendKeys(operator);
-        console.log(operator + " : operator");
-        await browser.manage().timeouts().implicitlyWait(20000);
-        await ele.home_inter_prop_value.sendKeys(unit);
-        await browser.manage().timeouts().implicitlyWait(20000);
-        console.log("All are set up to here :============")
-
-
         await ele.home_layer2_material_category.sendKeys(mc1);
-        await browser.manage().timeouts().implicitlyWait(20000);
         console.log(mc1 + " mc1 element")
         await browser.sleep(3000);
         await ele.home_layer2_material_grade.sendKeys(mg1);
@@ -232,30 +228,73 @@ module.exports = {
         await browser.sleep(3000);
     },
 
+    SELECT_CATEGORY_FOR_SEARCH_LAYER2_D:async function(mc, mg, operator, unit, mc1, mg1, operator1, unit1){
+        var ele = this.customer_element;
+        await browser.sleep(5000);
+
+        // await ele.home_interlayer.click();
+        // await browser.sleep(3000);
+
+        // await ele.home_inter_material_category.sendKeys(mc);
+        // await browser.manage().timeouts().implicitlyWait(20000);
+        // console.log(mc + " :material category");
+        // await browser.sleep(2000);
+        // await ele.home_inter_material_grade.sendKeys(mg);
+        // await browser.manage().timeouts().implicitlyWait(20000);
+        // await browser.sleep(2000);
+        // console.log(mg + " :material grade");
+        // await browser.manage().timeouts().implicitlyWait(20000);
+        // await ele.home_inter_operator.sendKeys(operator);
+        // console.log(operator + " : operator");
+        // await browser.manage().timeouts().implicitlyWait(20000);
+        // await ele.home_inter_prop_value.sendKeys(unit);
+        // await browser.manage().timeouts().implicitlyWait(20000);
+        // console.log("All are set up to here :Duplicate============")
+
+
+        await ele.home_layer2_material_category.sendKeys(mc1);
+     
+        console.log(mc1 + " mc1 element")
+        await browser.sleep(3000);
+        await ele.home_layer2_material_grade.sendKeys(mg1);
+        console.log(mg1 + " mg1 element")
+        await browser.manage().timeouts().implicitlyWait(20000);
+        await browser.sleep(3000);
+
+        await ele.home_layer2_operator.sendKeys(operator1);
+        console.log(operator1 + " : operator1");
+        await browser.manage().timeouts().implicitlyWait(20000);
+        await ele.home_layer2_prop_value.sendKeys(unit1);
+         
+        await browser.manage().timeouts().implicitlyWait(20000);
+
+        // console.log(mg + operator + unit);
+        await browser.sleep(3000);
+    },
+
     SELECT_CATEGORY_FOR_SEARCH_LAYER3: async function (mc, mg, operator, unit) {
 
-        await browser.sleep(2000);
+        await browser.sleep(1000);
         var ele = this.customer_element;
-        await ele.home_interlayer_2.click();
-        await browser.sleep(2000);
-        await ele.home_inter_grade_category.sendKeys(mc);
-        await browser.manage().timeouts().implicitlyWait(20000);
-        await browser.sleep(2000);
-        await ele.home_inter_grade_material.sendKeys(mg);
-        await browser.manage().timeouts().implicitlyWait(20000);
-        await browser.sleep(2000);
-        await ele.home_inter_value.sendKeys(unit);
-        await browser.manage().timeouts().implicitlyWait(20000);
-        await browser.sleep(2000);
+        // await ele.home_interlayer_2.click();
+        // await browser.sleep(2000);
+        // await ele.home_inter_grade_category.sendKeys(mc);
+        // await browser.manage().timeouts().implicitlyWait(20000);
+        // await browser.sleep(2000);
+        // await ele.home_inter_grade_material.sendKeys(mg);
+        // await browser.manage().timeouts().implicitlyWait(20000);
+        // await browser.sleep(2000);
+        // await ele.home_inter_value.sendKeys(unit);
+        // await browser.manage().timeouts().implicitlyWait(20000);
+        // await browser.sleep(2000);
 
         await ele.home_layer3_material_category.sendKeys(mc);
-        await browser.manage().timeouts().implicitlyWait(20000);
         await browser.sleep(2000);
         await ele.home_layer3_material_grade.sendKeys(mg);
-        await browser.manage().timeouts().implicitlyWait(20000);
         await browser.sleep(2000);
-        await ele.home_layer3_prp_value.sendKeys(unit);
-        await browser.manage().timeouts().implicitlyWait(20000);
+        await ele.home_layer3_operator.sendKeys(operator);
+        await browser.sleep(2000);
+        await ele.home_layer3_prp_value.sendKeys("3");
         await browser.sleep(2000);
 
     },
@@ -266,19 +305,19 @@ module.exports = {
         await browser.executeScript('window.scrollBy(0, 300);');
         var ele = this.customer_element;
 
-        await ele.home_interlayer_3.click();
-        await browser.sleep(2000);
+        // await ele.home_interlayer_3.click();
+        // await browser.sleep(2000);
 
 
-        await ele.home_inter3_grade_category.sendKeys(mc);
-        await browser.manage().timeouts().implicitlyWait(20000);
-        await browser.sleep(2000);
-        await ele.home_inter3_grade_material.sendKeys(mg);
-        await browser.manage().timeouts().implicitlyWait(20000);
-        await browser.sleep(2000);
-        await ele.home_inter3_grade_value.sendKeys(unit);
-        await browser.manage().timeouts().implicitlyWait(20000);
-        await browser.sleep(2000);
+        // await ele.home_inter3_grade_category.sendKeys(mc);
+        // await browser.manage().timeouts().implicitlyWait(20000);
+        // await browser.sleep(2000);
+        // await ele.home_inter3_grade_material.sendKeys(mg);
+        // await browser.manage().timeouts().implicitlyWait(20000);
+        // await browser.sleep(2000);
+        // await ele.home_inter3_grade_value.sendKeys(unit);
+        // await browser.manage().timeouts().implicitlyWait(20000);
+        // await browser.sleep(2000);
 
         await ele.home_layer4_material_category.sendKeys(mc1);
         await browser.manage().timeouts().implicitlyWait(20000);
@@ -300,15 +339,32 @@ module.exports = {
     },
     SEARCH_RESULT: async function () {
         var ele = this.customer_element;
+        await browser.sleep(5000);
 
-        await ele.no_result_found.getText().then(function (txt) {
+        var allresult = [];
+        allresult = await element.all(by.xpath('//*[@id="step8"]/table/tbody'))
+        console.log("All result found = " + allresult.length)
+
+        if(allresult.length>0){
+      
+        var allresult = [];
+        allresult = await element.all(by.xpath('//*[@id="step8"]/table/tbody'))
+        console.log("All result found = " + allresult.length)
+ 
+         
+          }else {
+              await ele.no_result_found.getText().then(function (txt) {
             if (txt == "No results found.Please click here to create new joint request") {
                 expect(txt).to.equal("No results found.Please click here to create new joint request");
+                
             } else {
                 expect(true).to.be.true;
             }
         });
-
+    }
+        // await browser.sleep(2000);
+        // await ele.assign_to_me_checkbox.click();
+        // await browser.sleep(2000);
     },
 
     CLICK_ON_SIDEBAR: async function (link) {
@@ -397,20 +453,21 @@ module.exports = {
         await browser.sleep(2000);
     },
 
-    CUST_ENTER_JOINT_NAME: async function (custName, ProID) {
+    CUST_ENTER_JOINT_NAME: async function (custName, ProID,program_ID) {
+
         var ele = this.customer_element;
         startTime = performance.now();
-        //await browser.sleep(5000);
+        await browser.sleep(10000);
         await ele.home_customerName.click();
         await browser.sleep(5000);
         await ele.create_new_joint_link.click();
 
-        await browser.sleep(40000);
+        await browser.sleep(20000);
         await ele.home_customerName.click();
         await browser.sleep(2000);
         await ele.home_customerName.sendKeys(custName, protractor.Key.DOWN, protractor.Key.ENTER);
         await browser.sleep(4000);
-        await ele.home_program_id.sendKeys("Dummy Pro", protractor.Key.DOWN, protractor.Key.ENTER)
+        await ele.home_program_id.sendKeys(program_ID, protractor.Key.DOWN, protractor.Key.ENTER)
         await browser.sleep(2000);
         await ele.home_project_id.sendKeys(ProID, protractor.Key.ENTER);
         await browser.sleep(4000);
@@ -458,14 +515,14 @@ module.exports = {
     TWO_LAYER_CREATE_NEW_JOINT: async function (inmc1, inmg1, inunit, mc2, mg2, unit2) {
         var ele = this.customer_element;
 
-        await ele.create_new_joint_interlayer_1.click();
-        await browser.sleep(2000);
-        await ele.home_inter_material_category.sendKeys(inmc1);
-        await browser.manage().timeouts().implicitlyWait(20000);
-        await ele.home_inter_material_grade.sendKeys(inmg1);
-        await browser.manage().timeouts().implicitlyWait(20000);
-        await ele.home_inter_prop_value.sendKeys(inunit);
-        await browser.manage().timeouts().implicitlyWait(20000);
+        // await ele.create_new_joint_interlayer_1.click();
+        // await browser.sleep(2000);
+        // await ele.home_inter_material_category.sendKeys(inmc1);
+        // await browser.manage().timeouts().implicitlyWait(20000);
+        // await ele.home_inter_material_grade.sendKeys(inmg1);
+        // await browser.manage().timeouts().implicitlyWait(20000);
+        // await ele.home_inter_prop_value.sendKeys(inunit);
+        // await browser.manage().timeouts().implicitlyWait(20000);
 
         await ele.home_layer2_material_category.sendKeys(mc2);
         await browser.sleep(2000);
@@ -480,7 +537,7 @@ module.exports = {
     },
     THREE_LAYER_CREATE_NEW_JOINT: async function (inmc1, inmg1, inunit, mc2, mg2, unit2) {
         var ele = this.customer_element;
-        //inmc3,inmg3,inunit3,mc3,mg3,unit3
+        
         browser.executeScript('window.scrollBy(0,300);');
         await browser.sleep(2000);
         // await ele.create_new_joint_interlayer_2.click();
@@ -492,27 +549,26 @@ module.exports = {
         // await ele.home_inter_prop_value2.sendKeys(inunit3);
         // await browser.manage().timeouts().implicitlyWait(20000);
 
-        await ele.home_layer3_material_category.sendKeys(mc3);
+        await ele.home_layer3_material_category.sendKeys(mc2);
         await browser.sleep(2000);
-        await browser.manage().timeouts().implicitlyWait(20000);
-        await ele.home_layer3_material_grade.sendKeys(mg3);
-        await browser.manage().timeouts().implicitlyWait(20000);
-        await ele.home_layer3_prp_value.sendKeys(unit3);
-        await browser.manage().timeouts().implicitlyWait(20000);
+        await ele.home_layer3_material_grade.sendKeys(mg2);
+        await browser.sleep(2000);
+        await ele.home_layer3_prp_value.sendKeys(inunit);
         // console.log(mg + operator + unit);
         await browser.sleep(2000);
     },
+
     FOUR_LAYER_CREATE_NEW_JOINT: async function (inmc3, inmg3, inunit3, mc3, mg3, unit3) {
         var ele = this.customer_element;
-
-        await ele.create_new_joint_interlayer_3.click();
         await browser.sleep(2000);
-        await ele.home_inter_material_category3.sendKeys(inmc3);
-        await browser.manage().timeouts().implicitlyWait(20000);
-        await ele.home_inter_material_grade3.sendKeys(inmg3);
-        await browser.manage().timeouts().implicitlyWait(20000);
-        await ele.home_inter_prop_value3.sendKeys(inunit3);
-        await browser.manage().timeouts().implicitlyWait(20000);
+        // await ele.create_new_joint_interlayer_3.click();
+        // await browser.sleep(2000);
+        // await ele.home_inter_material_category3.sendKeys(inmc3);
+        // await browser.manage().timeouts().implicitlyWait(20000);
+        // await ele.home_inter_material_grade3.sendKeys(inmg3);
+        // await browser.manage().timeouts().implicitlyWait(20000);
+        // await ele.home_inter_prop_value3.sendKeys(inunit3);
+        // await browser.manage().timeouts().implicitlyWait(20000);
 
         await ele.home_layer4_material_category.sendKeys(mc3);
         await browser.sleep(2000);
@@ -604,7 +660,7 @@ module.exports = {
     CUSTOMERNAME_PROJECTID_FOR_OTHERS: async function (custName, ProID) {
         var ele = this.customer_element;
 
-        await browser.sleep(2000);
+        await browser.sleep(5000);
         await ele.worksheet_link.click();
         await browser.sleep(10000);
         await ele.home_customerName.click();
