@@ -74,14 +74,17 @@ module.exports = {
            
             await browser.sleep(20000);
         } else if (role == "Approval Team") {
+
             browser.ignoreSynchronization = true;
-            await ele.username_txt.sendKeys(prop_conf.get('approval_email'));
+            await browser.sleep(5000);
+            await ele.username_txt.sendKeys(prop_conf.get('cust_email'));
             await ele.username_next_btn.click();
-            await browser.sleep(2000);
+            await browser.sleep(5000);
             await ele.password_txt.sendKeys('Varahitech#3');
-            // await ele.password_txt.sendKeys(prop_conf.get('password'));
-           // await ele.password_txt.sendKeys('Varahi#3');
            await ele.signIn_btn.click();
+           await browser.sleep(25000);
+           await ele.profile.sendKeys('Approval Team');
+           await browser.sleep(4000);
            
         } else if (role == "Technician") {
 
@@ -90,8 +93,14 @@ module.exports = {
             await ele.username_txt.sendKeys(prop_conf.get('cust_email'));
             await ele.username_next_btn.click();
             await browser.sleep(4000);
-            await ele.password_txt.sendKeys('Carpedium#123');
+            await ele.password_txt.sendKeys('Varahitech#3');
             await ele.signIn_btn.click();
+             
+           await browser.sleep(25000);
+        //    await ele.profile.sendKeys('Technician');
+        //    await browser.sleep(4000);
+
+
         } else if (role == "Development technician") {
             browser.ignoreSynchronization = true;
             await browser.sleep(6000);

@@ -98,6 +98,7 @@ module.exports = {
         home_layer3_material_grade: element(by.xpath('//select[@formcontrolname="materialGrade3"]')),
         home_layer3_operator: element(by.xpath('//input[@formcontrolname="propValue3"]')),
          home_layer3_prp_value: element(by.xpath('(//input[@placeholder="-"])[5]')),
+         home_layer3_prp_value2: element(by.xpath('//input[@formcontrolname="propValue3"]')),
 
         home_layer4_material_category: element(by.xpath('//select[@formcontrolname="propertiesName4"]')),
         home_layer4_material_grade: element(by.xpath('//select[@formcontrolname="materialGrade4"]')),
@@ -272,7 +273,7 @@ module.exports = {
         await browser.sleep(3000);
     },
 
-    SELECT_CATEGORY_FOR_SEARCH_LAYER3: async function (mc, mg, operator, unit) {
+    SELECT_CATEGORY_FOR_SEARCH_LAYER3: async function (mc, mg, operator, layer3_unit) {
 
         await browser.sleep(1000);
         var ele = this.customer_element;
@@ -294,9 +295,23 @@ module.exports = {
         await browser.sleep(2000);
         await ele.home_layer3_operator.sendKeys(operator);
         await browser.sleep(2000);
-        await ele.home_layer3_prp_value.sendKeys("3");
+        await ele.home_layer3_prp_value.sendKeys(layer3_unit);
         await browser.sleep(2000);
 
+    },
+    SELECT_CATEGORY_FOR_SEARCH_LAYER3D: async function(mc, mg, operator, layer3_unit){
+
+        await browser.sleep(1000);
+        var ele = this.customer_element;
+
+        await ele.home_layer3_material_category.sendKeys(mc);
+        await browser.sleep(2000);
+        await ele.home_layer3_material_grade.sendKeys(mg);
+        await browser.sleep(2000);
+        await ele.home_layer3_operator.sendKeys(operator);
+        await browser.sleep(2000);
+        await ele.home_layer3_prp_value2.sendKeys("3");
+        await browser.sleep(2000);
     },
 
     SELECT_CATEGORY_FOR_SEARCH_LAYER4: async function (mc, mg, unit, mc1, mg1, unit1, int) {

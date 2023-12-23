@@ -4,17 +4,19 @@ Feature: TO verify application engineer role all functionality
     Background: Launch Browser
         Given User navigate to Joining DB Applications
 
-    @app_engg_login
+@app_engg_login
     Scenario Outline: To verify Login functionality.
     
        When User "<role>" role enter our email and password and click on sign in button
        Then Verify the title name "<title>"
         Examples:
          | role                 | title            |
-         | Application Engineer | Joining Frontend |
+        # | Application Engineer | Joining Frontend |
         #|  Customer Center     | Joining Frontend |
-         
+        # |  Approval Team       | Joining Frontend |
+          |  Technician       | Joining Frontend |
 
+ 
 @app_engg_material_dynamic
     Scenario Outline: To verify the dynamic add layer for material search
 
@@ -25,7 +27,7 @@ Feature: TO verify application engineer role all functionality
             | no_layer | layer_no |  
            | 1        | Layer 1  | 
           # | 2        | Layer 2  |
-          #  | 3        | Layer 3  | 
+          
 
 
 @app_engg_customer_pro_id
@@ -39,20 +41,34 @@ Feature: TO verify application engineer role all functionality
           |Dummy GJD   |  Dummy test    |         
 
 
-@appeng_checkNotification
-    Scenario Outline: To verify notification functionality
-
+@create_a_new_user
+        Scenario Outline: To verify create new user functionality
         When "Application Engineer" user login to joining DB application
-        When user select customer name as "<customerName>" and project id is "<proID>"
-        And click on notification icon and select one request
-        And check selected request is opened
+         When Click on "<link>" from the sidebar
+        When enter "<first_name>" or "<last_name>" or "<email_id>" or "<add_role>" or "<lab>" or "<restriction>" 
+        # When enter "<first_name>" or "<last_name>" or "<email_id>" or "<add_role>" or "<lab>" or "<restriction>" clear all data
+        When check it "<link2>" 
+        When "<page_no>" user is created or not
+        #When delete the user
+        
         Examples:
-            | customerName              | proID         |
-           #| Ford                      | FD111         |
-            | Dummy GJD                 | Dummy test    |
+        | link             | link2          |  page_no   |   first_name  | last_name | email_id                     |  add_role             | lab  |  restriction   |
+        |  Create New User | List Of User   |     four   |   sachin      | gadekar   |sachin@varahitechnologies.com |  Application Engineer | pune | local releases |
 
 
-    @appengg_material_search_1
+@create_user_edit
+        Scenario Outline: To verify user edit functionality
+        When "Application Engineer" user login to joining DB application
+        When check it "<link2>" 
+        When "<page_no>" user is created or not
+        When edit any user it is edited "<changeble_name>" or not
+        
+    Examples:
+        | link2          |  page_no   |  changeble_name  |
+        | List Of User   |     four   |       satish     |
+
+
+@appengg_material_search_1
     Scenario Outline: To verify search functionality for layer 1 material search
 
          When "Application Engineer" user login to joining DB application
@@ -68,7 +84,7 @@ Feature: TO verify application engineer role all functionality
             | 1        | Any               | Any            | =        | 1    |  
            
 
-    @appenggmaterial_search_2
+@appenggmaterial_search_2
     Scenario Outline: To verify search functionality for layer 2 material search
 
         When "Application Engineer" user login to joining DB application
@@ -85,32 +101,35 @@ Feature: TO verify application engineer role all functionality
             | Ford         | FD111 | 2        | Any               | Any            | =        | 1    | PHS                      | MY                   | =              | 2          | PHS                      | MY                  | =               | 3           |
  
 
-    @appengg_material_search_3
+ @appengg_material_search_3
     Scenario Outline: To verify search functionality for layer 3 material search
         When "Application Engineer" user login to joining DB application
         # When user select customer name as "<customerName>" and project id is "<proID>"
         And Select number of layer "<no_layer>" from the material search
         Then Select material category "<material_category>" and material grade "<material_grade>" and select oprator "<operator>" and select unit "<unit>" mm
         And Select material category "<inter_material_category>" and material grade "<inter_material_grade>" and select oprator "<inter_operator>" and select unit "<inter_unit>" mm and again material category "<layer2_material_category>" and material grade "<layer2_material_grade>" and select oprator "<layer2_operator>" and select unit "<layer2_unit>" mm from layer 2D                                                                     
-        And Select material category "<layer3_material_category>" and material grade "<layer3_material_grade>" and select oprator "<layer3_operator>" and select unit "<layer3_unit>" mm from layer 3
+       #And Select material category "<layer3_material_category>" and material grade "<layer3_material_grade>" and select oprator "<layer3_operator>" and select unit "<layer3_unit>" mm from layer 3
+        And Select material category "<layer3_material_category>" and material grade "<layer3_material_grade>" and select oprator "<layer3_operator>" and select unit "<layer3_unit>" mm from layer 3D
         #And Interlaye select material category "<inter_mc2>", material grade "<inter_mg2>", unit "<inter_unit2>", again select material cateogry "<3mc>", material grade "<3mg>" and unit "<3unit>" mm for 3 layer
         And Click on search button
         Then Verify if record availble then displayed on table oterwise display no results found
         Then check resulted data with scrolling
         
         Examples:
-            | customerName | proID | no_layer | material_category | material_grade | operator | unit | inter_material_category | inter_material_grade | inter_operator | inter_unit | layer2_material_category | layer2_material_grade | layer2_operator | layer2_unit | inter_mc2 | inter_mg2 | inter_unit2 | 3mc  | 3mg | 3unit |
-            | Ford         | FD111 | 3        | PHS               | Any            | =        | 1    | PHS                     | Any                  | =              | 2          | PHS                      | Any                   | =               |      2      | PHS       | Any       | 3           | Tape | Any | 5     |
+            | customerName | proID | no_layer | material_category | material_grade | operator | unit | inter_material_category | inter_material_grade | inter_operator | inter_unit | layer2_material_category | layer2_material_grade | layer2_operator | layer2_unit | inter_mc2 | inter_mg2 | inter_unit2 | 3mc  | 3mg | 3unit | layer3_unit |
+            | Ford         | FD111 | 3        | PHS               | Any            | =        | 1    | PHS                     | Any                  | =              | 2          | PHS                      | Any                   | =               |      2      | PHS       | Any       | 3           | Tape | Any | 5     |   3         |
 
-    @appengg_material_search_4
+@appengg_material_search_4
     Scenario Outline: To verify search functionality for layer 4 material search
          When "Application Engineer" user login to joining DB application
         # When user select customer name as "<customerName>" and project id is "<proID>"
         And Select number of layer "<no_layer>" from the material search
         Then Select material category "<material_category>" and material grade "<material_grade>" and select oprator "<operator>" and select unit "<unit>" mm
         And Select material category "<inter_material_category>" and material grade "<inter_material_grade>" and select oprator "<inter_operator>" and select unit "<inter_unit>" mm and again material category "<layer2_material_category>" and material grade "<layer2_material_grade>" and select oprator "<layer2_operator>" and select unit "<layer2_unit>" mm from layer 2D
-        And Select material category "<layer3_material_category>" and material grade "<layer3_material_grade>" and select oprator "<layer3_operator>" and select unit "<layer3_unit>" mm from layer 3
+        And Select material category "<layer3_material_category>" and material grade "<layer3_material_grade>" and select oprator "<layer3_operator>" and select unit "<layer3_unit>" mm from layer 3D
+        
         #And Interlaye select material category "<inter_mc2>", material grade "<inter_mg2>", unit "<inter_unit2>", again select material cateogry "<3mc>", material grade "<3mg>" and unit "<3unit>" mm for 3 layer
+        
         And Interlaye select material category "<inter_mc4>", material grade "<inter_mg4>", unit "<inter_unit4>", again select material cateogry "<4mc>", material grade "<4mg>" and unit "<4unit>" mm for 4 layer wise        
         And Click on search button
         Then Verify if record availble then displayed on table oterwise display no results found
@@ -206,6 +225,8 @@ Feature: TO verify application engineer role all functionality
         Examples:
                  | role            |
                  | Customer Center |
+
+    
 
 @appeng_to_technician
     Scenario Outline: To verify send joint to technician role functionality
@@ -443,6 +464,20 @@ Examples:
         | link    | option_in_master |   option_in_statuses  |classification_name  |changeble_classification_name  |job_status |changeble_job_status | joint_status    |changeble_joint_status |
         |Master   |   statuses       |   joint status        |    test_lower       |  testing_Lower                |On hold    | rejected            |testing progress | testing Done          |
 
+
+@appeng_checkNotification
+    Scenario Outline: To verify notification functionality
+
+        When "Application Engineer" user login to joining DB application
+        When user select customer name as "<customerName>" and project id is "<proID>"
+        And click on notification icon and select one request
+        And check selected request is opened
+        Examples:
+            | customerName              | proID         |
+           #| Ford                      | FD111         |
+            | Dummy GJD                 | Dummy test    |
+
+
 @application_home_advance_search
         Scenario Outline: To verify advnace search functionality in home
         
@@ -453,9 +488,9 @@ Examples:
         When click it "<Fastner>" "<die>" "<jointstatus>" "<jobstatus>" "<materialcategory>" and "<industryy>" and "<programID>" and "<lab>"
         
 
-        Examples:
-        | link  |Customer  |project    |test_type  |equipment   | Fastner  | die | jointstatus  |  jobstatus  |  materialcategory  |  industryy  |  programID | lab  |
-        | Home  | dummy    |dummy test | mechnical |UUM-System 1|  A30     | DC  | Approved     |  Acceptable |  Steel             |  Automation | Dummy_     | pune |
+       Examples:
+        | link  |Customer  |project    |test_type  |equipment   | Fastner  | die       | jointstatus  |  jobstatus  |  materialcategory  |  industryy  |  programID | lab  |
+        | Home  | dummy    |dummy test | mechnical |UUM-System 1|  A30     | DC10-100  | Approved     |  Acceptable |  Steel             |  Automation | Dummy_     | pune |
 
 @application_home_advance_search_previous_search
         Scenario Outline: To verify advance search functionality show previous search
@@ -468,30 +503,6 @@ Examples:
         |  Home |
 
 
-@create_a_new_user
-        Scenario Outline: To verify create new user functionality
-        When "Application Engineer" user login to joining DB application
-         When Click on "<link>" from the sidebar
-        When enter "<first_name>" or "<last_name>" or "<email_id>" or "<add_role>" or "<lab>" or "<restriction>" 
-        # When enter "<first_name>" or "<last_name>" or "<email_id>" or "<add_role>" or "<lab>" or "<restriction>" clear all data
-        When check it "<link2>" 
-        When "<page_no>" user is created or not
-        #When delete the user
-        
-        Examples:
-        | link             | link2          |  page_no   |   first_name  | last_name | email_id                     |  add_role             | lab  |  restriction   |
-        |  Create New User | List Of User   |     four   |   sachin      | gadekar   |sachin@varahitechnologies.com |  Application Engineer | pune | local releases |
-
-@create_user_edit
-        Scenario Outline: To verify user edit functionality
-        When "Application Engineer" user login to joining DB application
-        When check it "<link2>" 
-        When "<page_no>" user is created or not
-        When edit any user it is edited "<changeble_name>" or not
-        
-    Examples:
-        | link2          |  page_no   |  changeble_name  |
-        | List Of User   |     four   |       satish     |
 
 
 @Create_new_templete        

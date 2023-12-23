@@ -25,9 +25,14 @@ Then('Select material category {string} and material grade {string} and select o
     return customer.SELECT_CATEGORY_FOR_SEARCH_LAYER2_D(mc, mg, operator, unit, mc1, mg1, operator1, unit1);
   });
 
-Then(/^Select material category "([^"]*)" and material grade "([^"]*)" and select oprator "([^"]*)" and select unit "([^"]*)" mm from layer 3$/, function(mc, mg, operator, unit) {
-    return customer.SELECT_CATEGORY_FOR_SEARCH_LAYER3(mc, mg, operator, unit);
+Then(/^Select material category "([^"]*)" and material grade "([^"]*)" and select oprator "([^"]*)" and select unit "([^"]*)" mm from layer 3$/, function(mc, mg, operator, layer3_unit) {
+    return customer.SELECT_CATEGORY_FOR_SEARCH_LAYER3(mc, mg, operator, layer3_unit);
 });
+
+Then('Select material category {string} and material grade {string} and select oprator {string} and select unit {string} mm from layer 3D', function 
+(mc, mg, operator, layer3_unit) {
+    return customer.SELECT_CATEGORY_FOR_SEARCH_LAYER3D(mc, mg, operator, layer3_unit);
+         });
 
 Then('Interlaye select material category {string}, material grade {string}, unit {string}, again select material cateogry {string}, material grade {string} and unit {string} mm for {int} layer wise', function (mc, mg, unit, mc1, mg1, unit1, int) {              
         return customer.SELECT_CATEGORY_FOR_SEARCH_LAYER4(mc, mg, unit, mc1, mg1, unit1, int) ;

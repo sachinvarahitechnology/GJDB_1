@@ -1164,10 +1164,10 @@ module.exports = {
         await ele.advance_search_testtype.sendKeys(test_type, protractor.Key.ENTER);
         await ele.advance_search_equipment.sendKeys(equipment, protractor.Key.ENTER);
         await browser.sleep(2000);
-         await ele.advance_search_filter.click();
-         await browser.sleep(2000);
-         await ele.search_button.click();
-         await browser.sleep(4000);
+        //  await ele.advance_search_filter.click();
+        //  await browser.sleep(2000);
+        //  await ele.search_button.click();
+        //  await browser.sleep(4000);
     },
 
     FAVORITE_FILTER: async function(){
@@ -1177,12 +1177,15 @@ module.exports = {
     },
 
     ADVANCE_SEARCH_IN_HOME1: async function (Fastner, die, jointstatus, jobstatus, materialcategory, industryy, programID, lab) {
-        await browser.sleep(2000);
+        await browser.sleep(4000);
         var ele = this.app_engg_element;
      
         await ele.advance_search_fastner.sendKeys(Fastner,protractor.Key.DOWN,protractor.Key.ENTER);
-        await ele.advance_search_dia.sendKeys(die); 
+        await browser.sleep(4000);
+        console.log("1=========================================")
+        await ele.advance_search_dia.sendKeys(die,protractor.Key.DOWN,protractor.Key.ENTER); 
         await browser.sleep(2000);
+        console.log("2=========================================")
         await ele.advance_search_jointstatus.sendKeys(jointstatus, protractor.key.ENTER);
         await browser.sleep(2000);
         console.log("1=========================================")
