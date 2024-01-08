@@ -108,6 +108,7 @@ module.exports = {
         home_customerName: element(by.xpath('//input[@placeholder="Customer"]')),
         home_project_id: element(by.xpath('(//select[@name="projId"])[2]')),
         home_program_id: element(by.xpath('(//select[@name="projId"])[1]')),
+        approval_page_program_ID: element(by.xpath(' (//select[@name="projId"])[2]')),
 
         // Create new joint request page
         name_of_joint: element(by.xpath('//input[@formcontrolname="jointName"]')),
@@ -715,6 +716,9 @@ module.exports = {
         await ele.home_customerName.click();
         await ele.home_customerName.sendKeys(custName, protractor.Key.DOWN, protractor.Key.ENTER);
         await browser.sleep(4000);
+
+         await ele.approval_page_program_ID.click().sendKeys("Dummy ",protractor.Key.UP ,protractor.Key.ENTER);
+         await browser.sleep(3000);
 
         var ss = element(by.xpath('(//select[@name="projId"])[2]'));
         ss.click();

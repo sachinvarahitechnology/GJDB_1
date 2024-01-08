@@ -11,21 +11,21 @@ Feature: TO verify application engineer role all functionality
        Then Verify the title name "<title>"
         Examples:
          | role                 | title            |
-        # | Application Engineer | Joining Frontend |
+        #| Application Engineer | Joining Frontend |
         #|  Customer Center     | Joining Frontend |
-        # |  Approval Team       | Joining Frontend |
-          |  Technician       | Joining Frontend |
-
+        #|  Approval Team       | Joining Frontend |
+        #|  Technician          | Joining Frontend |
+         |  Management          | Joining Frontend | 
  
 @app_engg_material_dynamic
     Scenario Outline: To verify the dynamic add layer for material search
-
-        When "Application Engineer" user login to joining DB application
+        When User "<role>" role enter our email and password and click on sign in button
+        #When "Application Engineer" user login to joining DB application
         When Select number of layer "<no_layer>" from the material search
         Then Verify the "<layer_no>" is displayed on the screen
         Examples:
-            | no_layer | layer_no |  
-           | 1        | Layer 1  | 
+            | no_layer | layer_no |  role        |
+            | 1        | Layer 1  | Technician   |
           # | 2        | Layer 2  |
           
 
@@ -36,24 +36,25 @@ Feature: TO verify application engineer role all functionality
         When "Application Engineer" user login to joining DB application
         When user select customer name as "<customerName>" and project id is "<proID>"
         Examples:
-          | customerName | proID |
-         #| Ford         | FD111 |
-          |Dummy GJD   |  Dummy test    |         
+          | customerName | proID       |
+         #| Ford         | FD111       |     
+          |Dummy GJD     |  Dummy test |         
 
 
 @create_a_new_user
         Scenario Outline: To verify create new user functionality
+        #When User "<role>" role enter our email and password and click on sign in button
         When "Application Engineer" user login to joining DB application
-         When Click on "<link>" from the sidebar
+        When Click on "<link>" from the sidebar
         When enter "<first_name>" or "<last_name>" or "<email_id>" or "<add_role>" or "<lab>" or "<restriction>" 
         # When enter "<first_name>" or "<last_name>" or "<email_id>" or "<add_role>" or "<lab>" or "<restriction>" clear all data
         When check it "<link2>" 
         When "<page_no>" user is created or not
-        #When delete the user
+        When delete the user
         
         Examples:
-        | link             | link2          |  page_no   |   first_name  | last_name | email_id                     |  add_role             | lab  |  restriction   |
-        |  Create New User | List Of User   |     four   |   sachin      | gadekar   |sachin@varahitechnologies.com |  Application Engineer | pune | local releases |
+        | link            |role           | link2          |  page_no   |   first_name  | last_name | email_id                     |  add_role             | lab  |  restriction   |
+        |  Create New User| Technician    | List Of User   |     four   |   sachin      | gadekar   |sachin@varahitechnologies.com |  Application Engineer | pune | local releases |
 
 
 @create_user_edit
@@ -71,7 +72,7 @@ Feature: TO verify application engineer role all functionality
 @appengg_material_search_1
     Scenario Outline: To verify search functionality for layer 1 material search
 
-         When "Application Engineer" user login to joining DB application
+        When "Application Engineer" user login to joining DB application
         #When user select customer name as "<customerName>" and project id is "<proID>"
         And Select number of layer "<no_layer>" from the material search
         Then Select material category "<material_category>" and material grade "<material_grade>" and select oprator "<operator>" and select unit "<unit>" mm
@@ -211,20 +212,20 @@ Feature: TO verify application engineer role all functionality
         When "Application Engineer" user login to joining DB application
         And Click on "<link>" from the sidebar
         When user select customer name as "<customerName>" and project id is "<proID>" in send_for_approval 
+        #When user select customer name as "<customerName>" or "<program_ID>" and project id is "<proID>
         And select any joint name and send to application engineer is "<app_eng_name>"
-        
-         And Click on "<link1>" from the sidebar
-         Examples:
-                | link              | app_eng_name     | link1   | customerName | proID     |
-                | Send For Approval | parth pandya     | Log Out | Dummy GJD    | Dummy test|
+        And Click on "<link1>" from the sidebar
+        Examples:
+                | link              | app_eng_name     | link1   | customerName  | program_ID        | proID     |
+                | Send For Approval | parth pandya     | Log Out | Dummy GJD     |  Dummy Program ID |Dummy test|
 
 @appeng_to_approval_team_and_this
     Scenario Outline: To verify send joint to approval team functionality with notification
          When "<role>" user login to joining DB application
          And click on notification icon and verify recent joint name came from customer center
-        Examples:
-                 | role            |
-                 | Customer Center |
+    Examples:
+        | role            |
+        | Approval Team   |
 
     
 
@@ -248,7 +249,7 @@ Examples:
          And click on notification icon and verify recent joint name came from customer center
         Examples:
              |role            |
-             |customer center |
+             |Technician      |
 
 @application_logout
     Scenario Outline: To verify logout application functionality
@@ -258,7 +259,7 @@ Examples:
             | link    |
             | Log Out |
 
-
+ 
 @application_master_customer_testing
     Scenario Outline: To verify add testing functionality in customer in master 
         When "Application Engineer" user login to joining DB application
@@ -273,7 +274,7 @@ Examples:
         #Then check add_new_lab or not "<location>" and "<person>"  
         #Then check add_new_region or not "<region>" 
         #Then check add_new_industry or not "<industry>" 
-        # Then check add_new_customer or not "<add_customer>"  
+        #Then check add_new_customer or not "<add_customer>"  
 
 
         Examples:
@@ -390,7 +391,7 @@ Examples:
 
 @application_master_material_edit 
         Scenario Outline: To verify added material edit or not functionality 
-       # When "Application Engineer" user login to joining DB application
+       #When "Application Engineer" user login to joining DB application
         When "Technician" user login to joining DB application
         When Click on "<link>" from the sidebar
         When Click on "<option_in_master>"
@@ -400,6 +401,7 @@ Examples:
         #Then added_new_material_grade_and_temper editable or not "<material_grade>" with "<changeble_material_grade>"
         # Then added_new_material_category editable or not "<material_category>" with "<changeble_material_category>"
         Then you login with technician never do edit or delete access
+        #master me material module ko technician aur devlop technician role se edit delete mhi kar skte
 
         Examples:
         | link    |option_in_master   |option_in_material         | alias_name |changeble_alisename |grade_category | changeble_grade_category |material_grade |changeble_material_grade | material_category|changeble_material_category |

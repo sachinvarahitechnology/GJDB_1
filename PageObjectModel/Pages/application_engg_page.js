@@ -182,6 +182,7 @@ module.exports = {
         firstname: element(by.xpath('//input[@formcontrolname="firstName"]')),
         lastname: element(by.xpath('//input[@formcontrolname="lastName"]')),
         email: element(by.xpath('//input[@formcontrolname="email"]')),
+        ok_button_after_create_user:element(by.xpath('(//div[@class="swal2-actions"]/button)[1]')),
 
         addrole: element(by.xpath('//span[@class="dropdown-btn"]')),
         search_in_addrole: element(by.xpath('//input[@placeholder="Search"]')),
@@ -412,7 +413,8 @@ module.exports = {
         await ele.restriction_select.sendKeys(restriction);
         await ele.submit.click();
         await browser.sleep(3000);
-        //await ele.ok_button.click();
+        await ele.ok_button_after_create_user.click();
+        await browser.sleep(3000);
     },
 
     LIST_OF_USER: async function (pageno) {
@@ -439,7 +441,18 @@ module.exports = {
     DELETE_USER: async function () {
         var ele = this.app_engg_element;
         await browser.sleep(4000);
-        await ele.delete_user.click();
+        let delete_user=[];
+       delete_user=await element.all(by.xpath('//img[@src="../../../assets/images/close1.png"]'))
+        
+       console.log("this is lenght of create user :" + delete_user.length);
+        
+       if(delete_user.length> 0){
+               
+        await browser.sleep(2000);
+        let lastElement = delete_user[delete_user.length - 1];
+        await lastElement.click();
+            }
+        await browser.sleep(4000);
     },
     DELETE: async function () {
         var ele = this.app_engg_element;
@@ -625,7 +638,24 @@ module.exports = {
     EDIT_USER: async function (change_name) {
         var ele = this.app_engg_element;
         await browser.sleep(4000);
-        await ele.edit_user();
+        // await ele.edit_user().click();
+
+                
+                let edit_user=[];
+                edit_user=await element.all(by.xpath('//img[@src="../../../assets/images/EDIT.png"]'))
+                 
+                console.log("this is lenght of edit user :" + edit_user.length);
+                 
+                if(edit_user.length> 0){
+                        
+                 await browser.sleep(2000);
+                 let lastElement = edit_user[edit_user.length - 1];
+                 await lastElement.click();
+                     }
+                 await browser.sleep(2000);
+
+
+
 
         await ele.firstname.sendKeys(change_name);
         await ele.submit.click();
